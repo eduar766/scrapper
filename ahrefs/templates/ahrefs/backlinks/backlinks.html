@@ -1,0 +1,24 @@
+{% extends 'ahrefs/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>Información de los Backlinks de ahrefs.com</h1>
+    </div>
+
+    <div class="row">
+      {% for backlink in collect_data %}
+      <div class="col-md-4 box">
+        <b>Backlink:</b> <a href="{{ backlink.url_from }}" target="_blank">{{ backlink.url_from }}</a><br>
+        <b>Titulo:</b> {{ backlink.title }}<br>
+        <b>Url destino:</b> {{ backlink.url_to }}<br>
+        <b>Lenguaje:</b> {{ backlink.language }}<br>
+        <b>Texto Enlazado:</b> {{ backlink.anchor }}<br>
+        <b>Nofollow:</b> {{ backlink.nofollow }}
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+{% endblock %}

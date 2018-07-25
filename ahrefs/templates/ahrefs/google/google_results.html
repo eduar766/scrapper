@@ -1,0 +1,57 @@
+{% extends 'ahrefs/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'bk_google_all' %}">
+        {% csrf_token %}
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Analizar todos los resultados</button>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'delete_google' %}">
+        {% csrf_token %}
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Borrar Resultados</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row titulos">
+    <div class="col-md-3">
+      <h4>Dominio</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>Keyword</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>Url en Google</h4>
+    </div>
+    <div class="col-md-3">
+      <h4>Ahrefs</h4>
+    </div>
+  </div>
+
+  {% for g in google %}
+  <div class="row search_style">
+    <div class="col-md-3">
+      <a href="http://{{ g.domain }}" target="_blank">{{ g.domain }}</a>
+    </div>
+    <div class="col-md-3">
+      {{ g.keyword }}
+    </div>
+    <div class="col-md-3">
+      <a href="{{ g.url }}" target="_blank">{{ g.url }}</a>
+    </div>
+    <div class="col-md-3">
+      <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'g_single' g.pk %}">
+        {% csrf_token %}
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar en Ahrefs</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

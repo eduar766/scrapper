@@ -1,0 +1,21 @@
+{% extends 'ahrefs/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+      <div class="row">
+        <h1>Dominios Enlazados a <span id="results_url_searched">{{ domain_from }}</span></h1>
+      </div>
+
+    <div class="row">
+      {% for data in collect_data %}
+        <div class="col-md-4">
+            <a href="http://{{ data.domain_to }}" target="_blank">{{ data.domain_to }}</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+{% endblock %}

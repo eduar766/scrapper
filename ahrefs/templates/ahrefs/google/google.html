@@ -1,0 +1,18 @@
+{% extends 'ahrefs/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container section-top">
+  <div class="row">
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.keyword }}
+        {{ form.cant }}
+        <small id="emailHelp" class="form-text text-muted">Solo puedes agregar (1) url</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Eduardo Saavedra">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{% static 'ahrefs/js/bootstrap.min.js' %}"></script>
+
+
+    <link rel="stylesheet" href="{% static 'ahrefs/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ahrefs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'ahrefs/css/bootstrap-grid.min.css' %}">
+    <link rel="icon" href="{% static 'ahrefs/img/favicon.ico' %}">
+    <title>{% block title %}{% endblock %}</title>
+
+
+  </head>
+  <body>
+    <header class="navbar-enlazalia">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img id="logo" src="{% static 'ahrefs/img/logo.png' %}" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-pills">
+              {% if user.is_authenticated %}
+               <li class="nav-item active">Hola {{ user.get_username }}</li>
+               <li class="nav-item active">
+                 <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="{% url 'search_bk' %}">Buscar</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="{% url 'google' %}">Google</a>
+               </li>
+               <li class="nav-item">
+                 <a href="{% url 'logout'%}">Salir</a>
+               </li>
+               <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'backlinks' %}">
+                 {% csrf_token %}
+                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ahrefs</button>
+               </form>
+             {% else %}
+               <li class="nav-item">
+                 <a href="{% url 'login'%}">Login</a>
+               </li>
+             {% endif %}
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <small>Desarrollado por <a href="#">Interfell</a></small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+  </body>
+</html>

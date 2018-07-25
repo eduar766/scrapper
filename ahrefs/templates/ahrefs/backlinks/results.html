@@ -1,0 +1,73 @@
+{% extends 'ahrefs/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container section-top">
+    <div class="row">
+      <h1>Información de los Backlinks de <span id="results_url_searched">ahrefs.com</span></h1>
+    </div>
+    <div class="row">
+      <small>Enlaces Encontrados: <b>{{ total }}</b></small>
+    </div>
+
+    <div class="row">
+      <form method="get" id="filter_search">
+        {{ filter.form.as_p }}
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+
+      <a href="{% static 'ahrefs/download/backlinks.xlsx' %}" download="Información_de_backlinks.xlsx">
+        <button id="export" class="btn btn-outline-success my-2 my-sm-0" type="submit">Exportar</button>
+      </a>
+      <a href="{% url 'delete' %}">
+        <button id="export" class="btn btn-outline-success my-2 my-sm-0" type="submit">Borrar BD</button>
+      </a>
+
+    </div>
+
+    <div class="row titulos">
+      <div class="col-md-2">
+        <h4>Url</h4>
+      </div>
+      <div class="col-md-2">
+        <h4>Idioma</h4>
+      </div>
+      <div class="col-md-2">
+        <h4>Ubicacion del Enlace</h4>
+      </div>
+      <div class="col-md-2">
+        <h4>Backlink</h4>
+      </div>
+      <div class="col-md-2">
+        <h4>Foro</h4>
+      </div>
+      <div class="col-md-2">
+        
+      </div>
+    </div>
+
+    {% for backlink in filter.qs %}
+    <div class="row search_style">
+      <div class="col-md-2">
+        <a href="{{ backlink.url_from}}" target="_blank">{{ backlink.url_from }}</a>
+      </div>
+      <div class="col-md-2">
+        {{ backlink.language }}
+      </div>
+      <div class="col-md-2">
+        {{ backlink.site_link }}
+      </div>
+      <div class="col-md-2">
+        <a href="{{ backlink.url_to}}" target="_blank">{{ backlink.url_to }}</a>
+      </div>
+      <div class="col-md-2">
+        {{ backlink.foro|yesno:"Sí,No" }}
+      </div>
+      <div class="col-md-2">
+        {{ backlink.nofollow|yesno:"nofollow,follow" }}
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'ahrefs/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h3> Su archivo se ha cargado correctamente</h3>
+  </div>
+
+  <div class="row">
+    {% if uploaded_file_url %}
+      <p>Archivo cargado como: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+    {% endif %}
+  </div>
+
+  <div class="row">
+    <form method="post" action="{% url 'search_csv' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Empezar a Escanear los Sitios</button>
+    </form>
+
+  </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,106 @@
+.box {
+  margin-bottom: 1em;
+}
+
+.search_style {
+    border-bottom: 1px solid;
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
+
+.titulos {
+  margin-top: 2em;
+}
+
+#logo {
+  width: 40%;
+}
+
+#results_url_searched {
+  color: #F26722;
+}
+
+a {
+    color: #1792D1;
+    overflow-wrap: break-word;
+}
+
+button.btn.btn-outline-success.my-2.my-sm-0 {
+    color: #F26722;
+    border: 1px solid;
+}
+
+button.btn.btn-outline-success.my-2.my-sm-0:hover {
+    background-color: #F26722;
+    color: #fff;
+}
+
+
+label[for=id_anchor],
+label[for=id_url_to],
+label[for=id_title],
+label[for=id_url_from],
+input#id_url_to,
+input#id_title,
+input#id_url_from,
+input#id_anchor {
+  display: none;
+}
+
+form#filter_search {
+    display: flex;
+}
+
+form#filter_search p,
+form#filter_search button {
+    margin-left: 0.5em;
+}
+
+form#filter_search button {
+  border: 0;
+  background-color: #F26722;
+  color: #fff;
+  width: 5em;
+  border-radius: 0.5em
+}
+
+button#export {
+  margin-left: 1em;
+}
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.section-top, .login {
+  margin-top: 5em;
+}
+
+input.login-system {
+  margin: 0 auto;
+  background-color: #F26722;
+  border: 0;
+  width: 100%;
+  padding: 0.4em;
+  color: #fff;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+input.login-system:hover {
+  background-color: transparent;
+  color:  #F26722;
+  border: 1px solid  #F26722;
+}
+
+input#id_username,
+input#id_password {
+  width: 100%;
+  border: 1px solid #F26722;
+}

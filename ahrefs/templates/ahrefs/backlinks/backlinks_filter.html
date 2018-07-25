@@ -1,0 +1,15 @@
+{% extends 'ahrefs/base.html' %}
+{% load static %}
+
+{% block content %}
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+    pupu
+  </form>
+  <ul>
+  {% for user in filter.qs %}
+    <li>{{ user.language }} - {{ user.site_link }} - {{ backlink.url_from }} - {{ backlink.url_to }}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}
